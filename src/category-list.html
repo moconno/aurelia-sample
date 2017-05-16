@@ -1,0 +1,21 @@
+<template>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li repeat.for="category of categories" class="list-group-item ${category.id === $parent.selectedCatId ? 'active' : ''}">
+          <a click.delegate="$parent.select(category)">
+            <h4 class="list-group-item-heading">${category.name}</h4>
+            <p class="list-group-item-text">${category.fixedPrice}</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="button-bar">
+    <button class="btn btn-success" click.delegate="buy()">Buy</button>
+  </div>
+</template>

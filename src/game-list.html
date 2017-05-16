@@ -1,0 +1,12 @@
+<template>
+  <div class="contact-list">
+    <ul class="list-group">
+      <li repeat.for="game of games" class="list-group-item ${game.id === $parent.selectedId ? 'active' : ''}">
+        <a route-href="route: gameCategories; params.bind: {gameId:game.id}" click.delegate="$parent.select(game)">
+          <h4 class="list-group-item-heading">${game.name}</h4>
+          <p class="list-group-item-text">${game.gameStartTime}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</template>
