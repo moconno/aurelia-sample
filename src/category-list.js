@@ -1,33 +1,26 @@
+import {App} from './app';
 import {inject} from 'aurelia-framework';
-import {EventAggregator} from 'aurelia-event-aggregator';
-import {WebAPI} from './web-api';
-import {GameViewed} from './messages';
+import {CategoryService} from './services/CategoryService'
+import {GameViewed, CategoryViewed} from './messages';
 
-@inject(WebAPI, EventAggregator)
+@inject(App, CategoryService)
 export class CategoryList {
-  constructor(api, ea) {
-    this.api = api;
-    this.ea = ea;
-
-    this.categories = []
+  constructor(app, categoryService) {
+    this.app = app;
+    this.categoryService = categoryService;
   }
 
   activate(params, routeConfig) {
-    this.routeConfig = routeConfig;
+    this.gameId = params.gameId;
+    return this.getCategories();
+  }
 
-    return this.api.getGameCategories(params.gameId).then(categories => {
-      this.categories = categories;
-      this.ea.publish(new GameViewed(null)); // need the game reference!
-    });
+  getCategories() {
+    return this.categoryService.getCategories(this.gameId);
   }
 
   select(category) {
-    this.selectedCatId = category.id;
+    this.app.ea.publish(new CategoryViewed(category));
     return true;
-  }
-
-  buy() {
-    const selectedCat = this.categories.find((c) => c.id == this.selectedCatId);
-    alert(`Bought that ${selectedCat.name}`);
   }
 }

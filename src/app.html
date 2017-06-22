@@ -7,18 +7,16 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
         <i class="fa fa-user"></i>
-        <span>Games</span>
+        <span>Home</span>
       </a>
     </div>
   </nav>
 
-  <loading-indicator loading.bind="router.isNavigating || api.isRequesting"></loading-indicator>
+  <loading-indicator loading.bind="router.isNavigating || http.isRequesting"></loading-indicator>
 
-  <div class="container">
-    <div class="row">
-      <game-list class="col-md-4"></game-list>
-      <router-view class="col-md-8"></router-view>
-    </div>
-  </div>
+  <section id="content">
+    <router-view></router-view>
+  </section>
+
 
 </template>

@@ -1,25 +1,21 @@
 import {inject} from 'aurelia-framework';
-import {EventAggregator} from 'aurelia-event-aggregator';
-import {WebAPI} from './web-api';
-import {GameViewed} from './messages';
+import {App} from './app';
+import {GameService} from './services/GameService';
+import { GameViewed } from './messages';
 
-@inject(WebAPI, EventAggregator)
+@inject(App, GameService)
 export class GameList {
-  constructor(api, ea) {
-    this.api = api;
-    this.ea = ea;
-    this.games = [];
-
-    ea.subscribe(GameViewed, msg => this.select(msg.game));
+  constructor(app, gameService) {
+    this.app = app;
+    this.gameService = gameService;
   }
 
   created() {
-    this.games = window.loadInfo.games;
-    // this.api.getContactList().then(contacts => this.contacts = contacts);
+    return this.gameService.getGames();
   }
 
   select(game) {
-    this.selectedId = game.id;
+    this.app.ea.publish(new GameViewed(game));
     return true;
   }
 }

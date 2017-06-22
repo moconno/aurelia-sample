@@ -1,17 +1,21 @@
+import {EventAggregator} from 'aurelia-event-aggregator';
 import {inject} from 'aurelia-framework';
-import {WebAPI} from './web-api';
+import {HttpClient} from 'aurelia-fetch-client'
 
-@inject(WebAPI)
+@inject(HttpClient, EventAggregator)
 export class App {
-  constructor(api) {
-    this.api = api;
+  constructor(http, ea, utility) {
+    this.http = http;
+    this.ea = ea;
   }
 
   configureRouter(config, router) {
-    config.title = 'Games';
+    config.title = 'Home';
     config.map([
-      { route: '', moduleId: 'no-selection', title: 'Select'},
-      { route: 'games/:gameId/categories', moduleId: 'category-list', name: 'gameCategories'}
+      { route: '', moduleId: 'game-list', title: 'Games' },
+      { route: 'game/:gameId/categories', moduleId: 'category-list', name: 'gameCategories', title: 'Categories', activate: true}
+      { route: 'game/:gameId/category/:categoryId', moduleId: 'checkout', name: 'checkoutCategory', title: 'Checkout', activate: true}
+
     ]);
 
     this.router = router;

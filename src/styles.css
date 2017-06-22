@@ -1,52 +1,32 @@
-body { padding-top: 70px; }
-
-section {
-  margin: 0 20px;
+body {
+  display: block;
+  width: auto;
+  height: auto;
 }
 
-a:focus {
-  outline: none;
+#content {
+  position: relative;
+  top: 50px;
 }
 
-.navbar-nav li.loader {
-    margin: 12px 24px 0 6px;
+@-webkit-keyframes slideIn {
+    from { left: 100vw; }
+    to { left: 0vw; }
 }
 
-.no-selection {
-  margin: 20px;
+.category-container {
+  position: absolute;
+  width: 100vw;
+  left: 100vw;
+  -webkit-animation: slideIn 0.3s ease-in-out;
+  -webkit-animation-fill-mode: forwards;
 }
 
-.contact-list {
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  padding: 10px;
+img {
+  width: 100vw;
 }
 
-.panel {
-  margin: 20px;
-}
-
-.button-bar {
-  right: 0;
-  left: 0;
-  bottom: 0;
-  border-top: 1px solid #ddd;
-  background: white;
-}
-
-.button-bar > button {
-  float: right;
-  margin: 20px;
-}
-
-li.list-group-item {
-  list-style: none;
-}
-
-li.list-group-item > a {
-  text-decoration: none;
-}
-
-li.list-group-item.active > a {
-  color: white;
+div {
+  margin: auto;
+  display: block;
 }

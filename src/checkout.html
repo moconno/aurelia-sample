@@ -3,7 +3,7 @@
     <div>
       <h3>${gameText}</h3>
     </div>
-    <div repeat.for="category of getCategories()">
+    <div repeat.for="category of categories">
       <div>
         <a click.delegate="$parent.select(category)">
           <div>
