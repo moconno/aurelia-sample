@@ -16,7 +16,7 @@ export function configure(aurelia) {
     .withDefaults({
       //credentials: 'same-origin',
       headers: {
-        'X-EXP-API-KEY': 'TEG3VtfVnfLX6CmoRpox'
+        'X-EXP-API-KEY': ''
         //'Content-type' : 'application/json'
       }
     })
